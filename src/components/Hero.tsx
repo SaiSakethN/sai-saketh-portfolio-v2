@@ -3,9 +3,7 @@ import { ArrowDown, ArrowUpRight, Download, Pause, Play } from "lucide-react";
 import { profile } from "../data/portfolio";
 import { SocialLinks } from "./Shared";
 const roles = [
-  { first: "AI", second: "Engineer" },
   { first: "Data", second: "Scientist" },
-  { first: "Data", second: "Engineer" },
   { first: "GenAI", second: "Engineer" },
   { first: "Machine Learning", second: "Engineer" },
 ];
@@ -50,8 +48,8 @@ export default function Hero() {
           <div className="role-area">
             <h1
               id="hero-title"
-              className={"rotating-role" + (role === 4 ? " long-role" : "")}
-              aria-label="AI Engineer, Data Scientist, Data Engineer, GenAI Engineer, and Machine Learning Engineer"
+              className={"rotating-role" + (role === 2 ? " long-role" : "")}
+              aria-label="Data Scientist, GenAI Engineer, and Machine Learning Engineer"
             >
               <span key={role} className="role-copy" aria-hidden="true">
                 <span>{current.first}</span>

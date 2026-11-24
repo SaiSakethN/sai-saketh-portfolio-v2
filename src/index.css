@@ -48,8 +48,8 @@
   --muted: #b8bdcc;
   --faint: #9da7be;
   --line: #404a61;
-  --accent: #f2b37a;
-  --accent-ink: #2c1e18;
+  --accent: #8ddbd1;
+  --accent-ink: #102c30;
   --art: #e5cbb9;
   --art-ink: #493528;
   --art-muted: #604433;
@@ -1770,3 +1770,9 @@ footer p {
     font-size: min(0.82em, 5.6vw);
   }
 }
+
+.project-visual { background: var(--surface); border-bottom: 1px solid var(--line); }
+.project-visual img { display:block; width:100%; height:auto; aspect-ratio: 1000 / 480; object-fit:contain; }
+.project-source-links { font-size: 1rem; color:var(--accent); }
+.project-source-links a { text-decoration:underline; text-underline-offset:4px; }
+.project-company { flex-wrap:wrap; gap:8px; }

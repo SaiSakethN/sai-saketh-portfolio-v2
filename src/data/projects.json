@@ -1,0 +1,178 @@
+[
+  {
+    "id": "urbanlake",
+    "title": "UrbanLake",
+    "category": "Data engineering",
+    "summary": "Make NYC service-request history reproducible, queryable and useful for demand forecasting.",
+    "metric": "23M+",
+    "metricLabel": "requests in documented snapshot",
+    "tags": [
+      "Kafka",
+      "Spark / Delta",
+      "MLflow",
+      "FastAPI"
+    ],
+    "problem": "City service data changes over time. A useful forecasting platform needs reconciled history, data-quality checks and evaluation that respects time.",
+    "approach": [
+      "Built bounded API ingestion, Kafka replay and Bronze / Silver / Gold Delta processing. Source polling reconciles observations; it is not CDC.",
+      "Implemented shifted lag features, a seasonal-naive baseline and chronological validation/test periods.",
+      "Separated a lightweight hosted analytics release from the local full-data pipeline and operational services."
+    ],
+    "workflow": [
+      "NYC 311 API",
+      "Kafka observations",
+      "Delta medallion layers",
+      "Chronological forecast",
+      "FastAPI / Redis"
+    ],
+    "outcome": "The recorded November 4 run reconciled 23,008,706 requests. Its historical random forest MAE was 788.40 requests/day versus 1,089.72 for lag-seven on 497 test days. This audit inspected source and the run ledger; it did not reproduce the full data run.",
+    "scope": "Historical one-day-ahead backtest with observed lags. Source revisions limit point-in-time validity. Snapshot ends November 1, 2026; this is not a current forecast service.",
+    "status": "Hosted analytics \u00b7 local pipeline",
+    "demo": "https://urbanlake-three.vercel.app",
+    "image": "/projects/urbanlake.svg",
+    "company": "Independent project",
+    "github": "https://github.com/SaiSakethN/urbanlake",
+    "lastVerified": "2026-11-23",
+    "documentation": "https://github.com/SaiSakethN/urbanlake/blob/main/docs/FULL_DATA_RUN.md"
+  },
+  {
+    "id": "knowdoc-ai",
+    "title": "KnowDoc AI",
+    "category": "Generative AI",
+    "summary": "Ask questions of private documents and inspect the exact source passage, version and page.",
+    "metric": "4 modes",
+    "metricLabel": "local retrieval comparison",
+    "tags": [
+      "FastAPI",
+      "PostgreSQL / pgvector",
+      "Ollama",
+      "React"
+    ],
+    "problem": "Document answers need traceable evidence and permission boundaries, especially when documents are shared, revised or revoked.",
+    "approach": [
+      "Implemented ingestion, checksummed versions, access-aware retrieval and citation resolution.",
+      "Built local keyword, dense, hybrid and optional reranked retrieval with Ollama generation.",
+      "Published a constrained hosted edition: PostgreSQL keyword retrieval, supported profile extraction and source passages; general generation is disabled."
+    ],
+    "workflow": [
+      "Private upload",
+      "Parse and version",
+      "Access-aware retrieval",
+      "Referenced answer",
+      "Resolve source passage"
+    ],
+    "outcome": "The developer-authored local benchmark compares 45 retrieval cases and 80 behavior cases. Hybrid with reranking recorded Recall@5 of 0.911; plain hybrid underperformed dense retrieval. Human semantic grading remains open, and recorded generation/injection failures are retained.",
+    "scope": "Hosted demo does not offer hybrid retrieval, reranking or general generative answering. Citation integrity is not semantic correctness. Exploratory benchmark annotations lack independent review.",
+    "status": "Hosted constrained demo \u00b7 local RAG",
+    "demo": "https://knowdoc-ai.vercel.app",
+    "image": "/projects/knowdoc-ai.png",
+    "company": "Independent project",
+    "github": "https://github.com/SaiSakethN/knowdoc-ai",
+    "lastVerified": "2026-11-23",
+    "documentation": "https://github.com/SaiSakethN/knowdoc-ai/blob/main/docs/evaluation-report.md"
+  },
+  {
+    "id": "careflow-ai",
+    "title": "CareFlow AI",
+    "category": "Machine learning",
+    "summary": "Investigate hospital admission outcomes with reproducible features and hospital-grouped evaluation.",
+    "metric": "2022",
+    "metricLabel": "CDC NHAMCS public-use data",
+    "tags": [
+      "XGBoost",
+      "SHAP",
+      "Scikit-learn",
+      "FastAPI"
+    ],
+    "problem": "Retrospective admission modeling requires clear target definitions and evaluation that reduces leakage across hospitals.",
+    "approach": [
+      "Prepared CDC NHAMCS emergency department data with explicit admission targets and feature processing.",
+      "Implemented two GroupShuffleSplit stages and assertions that hospitals never cross train, validation and test partitions.",
+      "Connected an XGBoost pipeline and SHAP analysis to a local FastAPI service and React research dashboard."
+    ],
+    "workflow": [
+      "CDC NHAMCS",
+      "Target and features",
+      "Hospital-disjoint split",
+      "XGBoost / SHAP",
+      "Local research dashboard"
+    ],
+    "outcome": "Training code evaluates training and validation partitions while preserving the held-out test partition. No final test or clinical performance claim is made.",
+    "scope": "Educational retrospective research only. Not clinically validated; never use for admission, discharge, treatment or other clinical decisions. Public deployment and held-out evaluation are pending.",
+    "status": "Local research prototype",
+    "image": "/projects/careflow-ai.svg",
+    "company": "Independent project",
+    "github": "https://github.com/SaiSakethN/careflow-ai",
+    "lastVerified": "2026-11-23",
+    "documentation": "https://github.com/SaiSakethN/careflow-ai/blob/main/docs/target-definition.md"
+  },
+  {
+    "id": "collabdocs",
+    "title": "CollabDocs",
+    "category": "Application engineering",
+    "summary": "Draft, import and share rich-text documents with persistence and explicit conflict handling.",
+    "metric": "Versioned",
+    "metricLabel": "writes reject stale updates",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "Tiptap"
+    ],
+    "problem": "A shared document workspace needs durable content, owner/editor permissions and protection against silent stale-write overwrites.",
+    "approach": [
+      "Implemented rich-text JSON persistence, autosave, TXT/Markdown import and owner/editor sharing.",
+      "Added conditional version checks to reject stale saves and owner-only document deletion.",
+      "Built and documented the application as a time-constrained assessment with selectable Alice/Bob demo identities."
+    ],
+    "workflow": [
+      "Demo identity",
+      "Rich-text editor",
+      "Server permission checks",
+      "Conditional write",
+      "PostgreSQL persistence"
+    ],
+    "outcome": "Source includes domain and delete-route tests plus browser coverage for owner-only deletion. Existing release records report 17 unit tests. This is not real-time collaborative merging.",
+    "scope": "Assessment demo: anyone can select either identity. No secure authentication, sharing revocation or document version history. Use synthetic sample content only.",
+    "status": "Hosted assessment demo",
+    "demo": "https://collabdocs-ten-iota.vercel.app",
+    "image": "/projects/collabdocs.png",
+    "company": "Independent project",
+    "github": "https://github.com/SaiSakethN/collabdocs",
+    "lastVerified": "2026-11-23",
+    "documentation": "https://github.com/SaiSakethN/collabdocs/blob/main/ARCHITECTURE.md"
+  },
+  {
+    "id": "Diamonds-PowerBI-Dashboard",
+    "title": "Diamonds analytics",
+    "category": "Analytics",
+    "summary": "Explore how carat, cut and color relate to diamond pricing through an interactive Power BI report.",
+    "metric": "Power BI",
+    "metricLabel": "downloadable report and data",
+    "tags": [
+      "Power BI",
+      "DAX",
+      "Data visualization"
+    ],
+    "problem": "Multivariate pricing data is easier to explore through linked views than a raw spreadsheet.",
+    "approach": [
+      "Created a Power BI report with pricing, carat, color and cut views.",
+      "Published the PBIX, CSV, workflow and dashboard preview for inspection.",
+      "Kept this descriptive analytics work separate from causal pricing or predictive-model claims."
+    ],
+    "workflow": [
+      "Diamonds CSV",
+      "Power BI model",
+      "DAX measures",
+      "Interactive report"
+    ],
+    "outcome": "Repository includes the report, source CSV, static PDF and screenshot. Power BI Desktop is required for interactive exploration; no hosted Power BI Service deployment is claimed.",
+    "scope": "Supporting analytics project. Dataset origin/license and a reproducible measure dictionary need stronger documentation. This audit did not execute the PBIX.",
+    "status": "Downloadable BI report",
+    "image": "/projects/diamonds.png",
+    "company": "Independent project",
+    "github": "https://github.com/SaiSakethN/Diamonds-PowerBI-Dashboard",
+    "lastVerified": "2026-11-23",
+    "documentation": "https://github.com/SaiSakethN/Diamonds-PowerBI-Dashboard/blob/main/README.md"
+  }
+]

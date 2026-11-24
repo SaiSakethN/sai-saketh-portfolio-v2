@@ -36,7 +36,7 @@ export default function App() {
               <br className="desktop-break" /> to building grounded AI.
             </h3>
             <p>
-              I’m Sai Saketh, a GenAI Data Scientist working across machine
+              I’m Sai Saketh, a Data Scientist working across machine
               learning, product analytics, and production AI. My work starts
               with making data usable and continues through retrieval,
               prediction, evaluation, and monitoring.
@@ -130,28 +130,6 @@ export default function App() {
                 Master of Science in Data Science and Analytics
               </p>
               <p className="school-location">Boca Raton, Florida</p>
-              <p className="education-gpa">
-                GPA <strong>3.90 / 4.00</strong>
-              </p>
-            </article>
-            <article className="education-row">
-              <span className="eyebrow">Oct 2020 — Apr 2024</span>
-              <h4>BV Raju Institute of Technology</h4>
-              <p className="degree">
-                Bachelor of Technology in Computer Science and Engineering
-              </p>
-              <p className="school-location">
-                Minor in Data Science · Hyderabad, India
-              </p>
-              <div className="gpa-pair">
-                <p className="education-gpa">
-                  Computer Science and Engineering (CSE):{" "}
-                  <strong>9.09 / 10.00</strong>
-                </p>
-                <p className="education-gpa">
-                  Data Science (Minor): <strong>9.17 / 10.00</strong>
-                </p>
-              </div>
             </article>
             <div className="certifications">
               <p className="eyebrow">CONTINUED LEARNING</p>

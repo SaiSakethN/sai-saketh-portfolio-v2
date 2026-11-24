@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify:content": "node scripts/verify-content.mjs",
+    "export:profile": "node scripts/export-profile-projects.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",
