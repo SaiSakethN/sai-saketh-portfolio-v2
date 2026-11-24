@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import type { FormEvent } from "react";
-import { ArrowUpRight, Copy, Check, Phone, MapPin } from "lucide-react";
+import { ArrowUpRight, Copy, Check, MapPin } from "lucide-react";
 import { profile, gmailCompose } from "../data/portfolio";
 import { SectionLabel, SocialLinks } from "./Shared";
 export default function Contact() {
@@ -100,10 +100,6 @@ export default function Contact() {
           <span className="sr-only" role="status">
             {copied ? "Email address copied to clipboard." : ""}
           </span>
-          <a className="phone-link" href={profile.phoneHref}>
-            <Phone size={17} />
-            {profile.phone}
-          </a>
           <p className="location-line">
             <MapPin size={17} />
             {profile.location}, USA

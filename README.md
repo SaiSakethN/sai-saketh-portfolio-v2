@@ -26,6 +26,7 @@ If PowerShell blocks `npm.ps1`, select **Command Prompt** from the terminal drop
 
 ```powershell
 npm run typecheck
+npm run verify:content
 npm run build
 npm run preview
 ```
@@ -38,9 +39,14 @@ Vercel settings: **Vite**, build command `npm run build`, output directory `dist
 
 ## Project files
 
-- `src/data/portfolio.ts` — portfolio content.
+- `src/data/portfolio.ts` — professional experience and typed content contract.
+- `src/data/projects.json` — shared project catalog for cards, filters and case studies.
 - `src/components/` — page components.
 - `src/index.css` — themes, typography, and responsive styles.
 - `public/` — images, self-hosted fonts, and downloadable resume.
 
 Verification notes and screenshots are available in [docs/VERIFICATION.md](docs/VERIFICATION.md) and [docs/screenshots/](docs/screenshots/). Font licenses are included in `public/fonts/`.
+
+## Maintaining the engineering portfolio
+
+The selected work presents UrbanLake, KnowDoc AI, CareFlow AI, CollabDocs and Diamonds analytics, with explicit status, source links, historical evidence and limitations. Professional experience is separate. See [content maintenance](docs/CONTENT.md); `npm run export:profile` produces the matching GitHub profile project block. The RUC document and private interview material are never part of the site.

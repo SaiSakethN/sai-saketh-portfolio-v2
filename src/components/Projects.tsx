@@ -4,13 +4,7 @@ import { projects } from "../data/portfolio";
 import type { Project } from "../data/portfolio";
 import { Tags, SectionLabel } from "./Shared";
 import ProjectPreview from "./ProjectPreview";
-const categories = [
-  "All work",
-  "Generative AI",
-  "Machine learning",
-  "NLP",
-  "Analytics",
-];
+const categories = ["All work", ...new Set(projects.map(p => p.category))];
 function CaseStudy({
   project,
   onClose,
@@ -94,6 +88,7 @@ function CaseStudy({
           <strong>{project.metric}</strong>
           <span>{project.metricLabel}</span>
         </div>
+        <p className="project-source-links"><a href={project.github} target="_blank" rel="noreferrer">Source code</a> · <a href={project.documentation} target="_blank" rel="noreferrer">Technical evidence</a>{project.demo && <> · <a href={project.demo} target="_blank" rel="noreferrer">Live demo</a></>}</p><p className="caption">{project.status} · Source reviewed {project.lastVerified}</p>
         <h3>The problem</h3>
         <p>{project.problem}</p>
         <h3>My technical contribution</h3>
@@ -103,7 +98,7 @@ function CaseStudy({
           ))}
         </ul>
         <h3>High-level workflow</h3>
-        <p className="caption">Conceptual view of the documented work.</p>
+        <p className="caption">Source-backed workflow overview.</p>
         <ol className="case-workflow">
           {project.workflow.map((item, i) => (
             <li key={item}>
@@ -118,7 +113,7 @@ function CaseStudy({
         <h3>Results & impact</h3>
         <p>{project.outcome}</p>
         <div className="scope-note" id="case-scope">
-          <strong>Professional case study scope</strong>
+          <strong>Scope & limitations</strong>
           <p>{project.scope}</p>
         </div>
         <button className="button secondary" onClick={onClose}>
@@ -152,7 +147,7 @@ export default function Projects() {
       <div className="split-section project-intro">
         <SectionLabel number="03">Selected work</SectionLabel>
         <div className="section-content">
-          <p className="eyebrow">PROFESSIONAL CASE STUDIES</p>
+          <p className="eyebrow">INDEPENDENT ENGINEERING PROJECTS</p>
           <h3 id="projects-heading">
             The problem. The process.
             <br />
@@ -160,8 +155,7 @@ export default function Projects() {
           </h3>
           <p>
             A closer look at retrieval, prediction, and product intelligence.
-            These are summaries of employer work; proprietary code and data
-            remain private.
+            Explore the implementation, evaluation evidence and current limits of each project.
           </p>
         </div>
       </div>
@@ -190,15 +184,15 @@ export default function Projects() {
       <div className="projects-grid">
         {shown.map((p) => (
           <article key={p.id} className="project-card">
-            <ProjectPreview index={projects.indexOf(p)} />
+            <ProjectPreview project={p} />
             <div className="project-body">
               <div className="project-company">
                 <span>{p.company}</span>
-                <span>Professional case study</span>
+                <span>{p.status}</span>
               </div>
               <h4>{p.title}</h4>
               <p>{p.summary}</p>
-              <Tags items={p.tags} />
+              <Tags items={p.tags} /><p className="project-source-links"><a href={p.github} target="_blank" rel="noreferrer">Source code</a>{p.demo && <> · <a href={p.demo} target="_blank" rel="noreferrer">Live demo</a></>}</p>
               <div className="project-bottom">
                 <div className="project-metric">
                   <strong>{p.metric}</strong>
@@ -221,9 +215,7 @@ export default function Projects() {
         ))}
       </div>
       <p className="projects-note">
-        <span aria-hidden="true">↳</span> Conceptual previews illustrate
-        documented workflows. No employer code, data, or internal interfaces are
-        shared.
+        <span aria-hidden="true">↳</span> Application/report screenshots and labeled architecture illustrations. Professional experience is presented separately.
       </p>
       {selected && <CaseStudy project={selected} onClose={close} />}
     </section>
